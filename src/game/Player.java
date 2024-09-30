@@ -19,7 +19,7 @@ public class Player {
         Player.yPosition = yPosition;
         Player.width = width;
         Player.height = height;
-        Player.speed = 50;
+        Player.speed = 10;
         try {
             Player.leftImage = ImageIO.read(new File("src/res/player_left.png"));
             Player.rightImage = ImageIO.read(new File("src/res/player_right.png"));
@@ -61,11 +61,19 @@ public class Player {
     }
 
     public static int getHighestYPosition() {
-        return Player.getYPosition() + 2;
+        return Player.getYPosition() + 100;
     }
 
     public static int getHighestXPosition() {
-        return Player.getXPosition() + 2;
+        return Player.getXPosition() + 100;
+    }
+
+    public static int getLowestYPosition() {
+        return Player.getYPosition() - 100;
+    }
+
+    public static int getLowestXPosition() {
+        return Player.getXPosition() - 2;
     }
 
     public static int getSpeed() {

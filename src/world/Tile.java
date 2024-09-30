@@ -31,9 +31,9 @@ public class Tile {
 
     public void draw(Graphics g, int cameraOffsetX, int cameraOffsetY) {
         if (image != null) {
-            if((x - cameraOffsetX) <= Player.getXPosition() + 100 && (y - cameraOffsetY) <= Player.getYPosition() + 100) {
+
                 g.drawImage(image, x - cameraOffsetX, y - cameraOffsetY, width, height, null);
-            }
+
         } else {
             g.setColor(Color.RED);
             g.fillRect(x - cameraOffsetX, y - cameraOffsetY, width, height);

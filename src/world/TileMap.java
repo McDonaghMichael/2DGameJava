@@ -50,7 +50,7 @@ public class TileMap {
         for (int i = 0; i < Player.getHighestXPosition(); i++) {
             for (int j = 0; j < Player.getHighestYPosition(); j++) {
 
-                if(i == 2000 && j == 2001) {
+                if(i == 400 && j == 400) {
                     waterImage = waterImages.get(new Random().nextInt(waterImages.size()));
                     tiles.add(new Tile(i * 50, j * 50, waterImage));
                 }else if(i == 2 && j == 1) {
@@ -72,6 +72,7 @@ public class TileMap {
 
             }
         }
+
     }
 
     public void draw(Graphics g, int cameraOffsetX, int cameraOffsetY) {
