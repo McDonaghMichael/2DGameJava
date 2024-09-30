@@ -12,7 +12,7 @@ public class Player {
     private static int width;
     private static int height;
     private static int speed;
-    public static Image image, leftImage, rightImage, waterImage;
+    public static Image image, leftImage, rightImage, waterImageLeft, waterImageRight;
 
     public Player(int xPosition, int yPosition, int width, int height) {
         Player.xPosition = xPosition;
@@ -23,7 +23,8 @@ public class Player {
         try {
             Player.leftImage = ImageIO.read(new File("src/res/player_left.png"));
             Player.rightImage = ImageIO.read(new File("src/res/player_right.png"));
-            Player.waterImage = ImageIO.read(new File("src/res/player_water.png"));
+            Player.waterImageLeft = ImageIO.read(new File("src/res/player_water_left.png"));
+            Player.waterImageRight = ImageIO.read(new File("src/res/player_water_right.png"));
             Player.image = leftImage;
         }catch (IOException e){
             e.printStackTrace();

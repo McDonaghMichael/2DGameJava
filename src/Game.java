@@ -1,6 +1,7 @@
 import game.Player;
 import objects.GameObject;
 import objects.PlayerObject;
+import objects.WallObject;
 import objects.WaterObject;
 import world.Tile;
 import world.TileMap;
@@ -39,10 +40,25 @@ public class Game extends JPanel {
         addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
                 int key = e.getKeyCode();
+
+                // Get the player's position
+                int playerX = Player.getXPosition();
+                int playerY = Player.getYPosition();
+
+                GameObject tileAtPosition = tileMap.getTileAtPosition(playerX, playerY);
+                GameObject tileAtPositionWest = tileMap.getTileAtPosition(playerX - 60, playerY);
+                GameObject tileAtPositionEast = tileMap.getTileAtPosition(playerX + 60, playerY);
+                GameObject tileAtPositionNorth = tileMap.getTileAtPosition(playerX, playerY - 60);
+                GameObject tileAtPositionSouth = tileMap.getTileAtPosition(playerX, playerY + 60);
+
                 switch (key) {
                     case KeyEvent.VK_UP:
                     case KeyEvent.VK_W:
                         if (player.getYPosition() > 0) {
+                            if (tileAtPositionNorth instanceof WallObject) {
+                                System.out.println("North: " + tileAtPositionNorth.getName());
+                                return;
+                            }
                             player.setYPosition(player.getYPosition() - (10 + Player.getSpeed()));
                             cameraOffsetY = Math.max(cameraOffsetY - (10 + Player.getSpeed()), 0);
                         }
@@ -51,28 +67,49 @@ public class Game extends JPanel {
                     case KeyEvent.VK_RIGHT:
                     case KeyEvent.VK_D:
                         if (player.getXPosition() < mapWidth - player.getWidth()) {
+                            if (tileAtPosition instanceof WaterObject) {
+                                Player.setImage(Player.waterImageRight);
+                            } else if (tileAtPositionEast instanceof WallObject) {
+                                System.out.println("East: " + tileAtPositionEast.getName());
+                                return;
+                            } else {
+                                Player.setImage(Player.rightImage);
+                            }
                             player.setXPosition(player.getXPosition() + (10 + Player.getSpeed()));
-                            cameraOffsetX = Math.min(cameraOffsetX + (10 + Player.getSpeed()), mapWidth - getWidth());// Stop scrolling past the right edge
-                            Player.setImage(Player.rightImage);
+                            cameraOffsetX = Math.min(cameraOffsetX + (10 + Player.getSpeed()), mapWidth - getWidth());
                         }
                         break;
 
                     case KeyEvent.VK_LEFT:
                     case KeyEvent.VK_A:
                         if (player.getXPosition() > 0) {
+
+                            if (tileAtPosition instanceof WaterObject) {
+                                Player.setImage(Player.waterImageLeft);
+                            } else if (tileAtPositionWest instanceof WallObject) {
+                                System.out.println("West: " + tileAtPositionWest.getName());
+                                return;
+                            } else {
+                                Player.setImage(Player.leftImage);
+                            }
+
                             player.setXPosition(player.getXPosition() - (10 + Player.getSpeed()));
                             cameraOffsetX = Math.max(cameraOffsetX - (10 + Player.getSpeed()), 0);
-                            Player.setImage(Player.leftImage);
+
                         }
                         break;
 
                     case KeyEvent.VK_DOWN:
                     case KeyEvent.VK_S:
-                        // Move player down if within the map bounds
+
                         if (player.getYPosition() < mapHeight - player.getHeight() * 2) {
+                            if (tileAtPositionSouth instanceof WallObject) {
+                                System.out.println("South: " + tileAtPositionSouth.getName());
+                                return;
+                            }
                             player.setYPosition(player.getYPosition() + (10 + Player.getSpeed()));
                             cameraOffsetY = Math.min(cameraOffsetY + (10 + Player.getSpeed()), mapHeight - getHeight()); // Stop scrolling past the bottom edge
-                        }else{
+                        } else {
                             player.setYPosition(mapHeight - player.getHeight() * 2);
                         }
                         break;
@@ -80,15 +117,6 @@ public class Game extends JPanel {
                     case KeyEvent.VK_SHIFT:
                         Player.setSpeed(10);
                         break;
-                }
-
-
-                GameObject tileAtPosition = tileMap.getTileAtPosition(Player.getXPosition() / 50, Player.getYPosition() / 50);
-
-                if (tileAtPosition instanceof WaterObject ) {
-                    Player.setImage(Player.waterImage);
-                }else{
-                    Player.setImage(Player.leftImage);
                 }
 
                 repaint();
@@ -123,6 +151,4 @@ public class Game extends JPanel {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
-
-
 }
