@@ -1,5 +1,10 @@
 package game;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+
 public class Player {
 
     private static int xPosition;
@@ -7,13 +12,21 @@ public class Player {
     private static int width;
     private static int height;
     private static int speed;
+    public static Image image, leftImage, rightImage;
 
     public Player(int xPosition, int yPosition, int width, int height) {
         Player.xPosition = xPosition;
         Player.yPosition = yPosition;
         Player.width = width;
         Player.height = height;
-        Player.speed = 0;
+        Player.speed = 50;
+        try {
+            Player.leftImage = ImageIO.read(new File("src/res/player_left.png"));
+            Player.rightImage = ImageIO.read(new File("src/res/player_right.png"));
+            Player.image = leftImage;
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     public static int getXPosition(){
@@ -63,4 +76,11 @@ public class Player {
         Player.speed = speed;
     }
 
+    public static Image getImage() {
+        return image;
+    }
+
+    public static void setImage(Image image) {
+        Player.image = image;
+    }
 }

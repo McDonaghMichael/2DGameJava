@@ -1,4 +1,5 @@
 import game.Player;
+import world.Tile;
 import world.TileMap;
 
 import javax.swing.JFrame;
@@ -11,11 +12,13 @@ import java.awt.event.KeyEvent;
 public class Game extends JPanel {
     private Player player;
     private TileMap tileMap;
-    private int cameraOffsetX = 0;
-    private int cameraOffsetY = 0;
+    private int cameraOffsetX;
+    private int cameraOffsetY;
 
     public Game() {
-        player = new Player(400, 400, 50, 50);
+        player = new Player(2000, 2000, 50, 50);
+        cameraOffsetY = Player.getYPosition() - 500;
+        cameraOffsetX = Player.getXPosition() - 500;
         tileMap = new TileMap();
         setFocusable(true);
         addKeyListener(new KeyAdapter() {
@@ -31,11 +34,13 @@ public class Game extends JPanel {
                     case KeyEvent.VK_D:
                         player.setXPosition(player.getXPosition() + (10 + Player.getSpeed()));
                         cameraOffsetX += (10 + Player.getSpeed());
+                        Player.setImage(Player.rightImage);
                         break;
                     case KeyEvent.VK_LEFT:
                     case KeyEvent.VK_A:
                         player.setXPosition(player.getXPosition() - (10 + Player.getSpeed()));
                         cameraOffsetX -= (10 + Player.getSpeed());
+                        Player.setImage(Player.leftImage);
                         break;
                     case KeyEvent.VK_DOWN:
                     case KeyEvent.VK_S:
@@ -68,10 +73,8 @@ public class Game extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         tileMap.draw(g, cameraOffsetX, cameraOffsetY);
-
-        g.setColor(Color.BLUE);
-        g.fillRect(player.getXPosition() - cameraOffsetX, getHeight() - (player.getYPosition() - cameraOffsetY) - player.getHeight(), player.getWidth(), player.getHeight());
-
+        Tile play = new Tile(player.getXPosition(), player.getYPosition(), Player.getImage());
+        play.draw(g, cameraOffsetX, cameraOffsetY);
     }
 
     public static void load() {
