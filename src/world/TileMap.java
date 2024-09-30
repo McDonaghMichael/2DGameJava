@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import game.Player;
+import game.player.Player;
 
 public class TileMap {
     private List<GameObject> tiles;
@@ -20,11 +20,13 @@ public class TileMap {
     private Image waterImage;
     private Image dirtImage;
     private Image wallImage;
+    private Image cowImage;
 
     ArrayList<BufferedImage> grassImages;
     ArrayList<BufferedImage> waterImages;
     ArrayList<BufferedImage> dirtImages;
     ArrayList<BufferedImage> wallImages;
+    ArrayList<BufferedImage> cowImages;
 
     public TileMap() {
         tiles = new ArrayList<>();
@@ -54,6 +56,7 @@ public class TileMap {
 
             wallImages = new ArrayList<>();
             wallImages.add(ImageIO.read(new File("src/res/wall1.png")));
+
 
         } catch (IOException e) {
             System.err.println("Error loading grass image");

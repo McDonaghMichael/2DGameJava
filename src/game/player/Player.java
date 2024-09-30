@@ -1,4 +1,4 @@
-package game;
+package game.player;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

@@ -1,4 +1,7 @@
-import game.Player;
+package game;
+
+import game.entites.EntityManager;
+import game.player.Player;
 import objects.GameObject;
 import objects.PlayerObject;
 import objects.WallObject;
@@ -15,8 +18,8 @@ import java.awt.event.KeyEvent;
 public class Game extends JPanel {
     private Player player;
     private TileMap tileMap;
-    private int cameraOffsetX;
-    private int cameraOffsetY;
+    public static int cameraOffsetX;
+    public static int cameraOffsetY;
 
     private final int mapWidth = WorldConstants.WORLD_X_BORDER;
     private final int mapHeight = WorldConstants.WORLD_Y_BORDER;
@@ -32,6 +35,7 @@ public class Game extends JPanel {
         screenHeight = dimension.height;
 
         player = new Player(800, 800, 50, 50);
+
         cameraOffsetY = Player.getYPosition() - screenHeight / 4;
         cameraOffsetX = Player.getXPosition() - screenWidth / 4;
         tileMap = new TileMap();
@@ -173,12 +177,16 @@ public class Game extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         tileMap.draw(g, cameraOffsetX, cameraOffsetY);
+
+
         PlayerObject play = new PlayerObject(player.getXPosition(), player.getYPosition(), Player.getImage());
         play.draw(g, cameraOffsetX, cameraOffsetY);
+
+        EntityManager.drawEntities(g, cameraOffsetX, cameraOffsetY);
     }
 
     public void load() {
-        JFrame frame = new JFrame("2D Game");
+        JFrame frame = new JFrame("2D game.Game");
         Game game = new Game();
         frame.add(game);
         frame.setSize(dimension.width, dimension.height);
