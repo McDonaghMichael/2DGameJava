@@ -1,15 +1,14 @@
-package world;
+package objects;
 
-import objects.GameObject;
 import java.awt.*;
 
-public class Tile implements GameObject{
+public class GrassObject implements GameObject{
     private int x, y;
     private int width, height;
-    private String name = "Tile";
+    private String name = "Grass";
     private Image image;
 
-    public Tile(int x, int y, Image image) {
+    public GrassObject(int x, int y, Image image) {
         this.x = x;
         this.y = y;
         this.width = 50;
@@ -27,6 +26,10 @@ public class Tile implements GameObject{
 
     public int getY() {
         return y;
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     public void setY(int y) {
@@ -55,10 +58,6 @@ public class Tile implements GameObject{
 
     public void setImage(Image image) {
         this.image = image;
-    }
-
-    public String getName() {
-        return this.name;
     }
 
     public void draw(Graphics g, int cameraOffsetX, int cameraOffsetY) {

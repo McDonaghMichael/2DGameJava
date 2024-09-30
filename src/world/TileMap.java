@@ -1,6 +1,8 @@
 package world;
 
 import objects.GameObject;
+import objects.GrassObject;
+import objects.WaterObject;
 import world.Tile;
 
 import javax.imageio.ImageIO;
@@ -15,7 +17,7 @@ import java.util.Random;
 import game.Player;
 
 public class TileMap {
-    private List<Tile> tiles;
+    private List<GameObject> tiles;
 
     private Image grassImage;
     private Image waterImage;
@@ -26,7 +28,9 @@ public class TileMap {
     public TileMap() {
         tiles = new ArrayList<>();
         loadGrassImage();
+
         createTiles();
+
     }
 
     private void loadGrassImage() {
@@ -49,35 +53,57 @@ public class TileMap {
     private void createTiles() {
         for (int i = 0; i < Player.getHighestXPosition(); i++) {
             for (int j = 0; j < Player.getHighestYPosition(); j++) {
-
-                if(i == 400 && j == 400) {
-                    waterImage = waterImages.get(new Random().nextInt(waterImages.size()));
-                    tiles.add(new Tile(i * 50, j * 50, waterImage));
-                }else if(i == 2 && j == 1) {
-                    waterImage = waterImages.get(new Random().nextInt(waterImages.size()));
-                    tiles.add(new Tile(i * 50, j * 50, waterImage));
-                }else if(i == 2 && j == 2) {
-                    waterImage = waterImages.get(new Random().nextInt(waterImages.size()));
-                    tiles.add(new Tile(i * 50, j * 50, waterImage));
-                }else if(i == 3 && j == 1) {
-                    waterImage = waterImages.get(new Random().nextInt(waterImages.size()));
-                    tiles.add(new Tile(i * 50, j * 50, waterImage));
-                }else{
-                    Random rand = new Random();
-                    grassImage = grassImages.get(rand.nextInt(3));
-                    tiles.add(new Tile(i * 50, j * 50, grassImage)); // Pass the loaded image
-                }
-
-
+                Random rand = new Random();
+                grassImage = grassImages.get(rand.nextInt(3));
+                GrassObject tile = new GrassObject(i * 50, j * 50, grassImage);
+                tiles.add(tile);
 
             }
         }
 
+        generateLake();
     }
 
-    public void draw(Graphics g, int cameraOffsetX, int cameraOffsetY) {
-        for (Tile tile : tiles) {
+    private void generateLake() {
+        waterImage = waterImages.get(new Random().nextInt(waterImages.size()));
 
+        WaterObject water1 = new WaterObject(5 * 50, 4 * 50, waterImage);
+        WaterObject water2 = new WaterObject(6 * 50, 4 * 50, waterImage);
+        addTile(water1);
+        addTile(water2);
+    }
+
+    public GameObject getTileAtPosition(int x, int y) {
+        for (GameObject tile : tiles) {
+            if (tile.getX() == x * 50 && tile.getY() == y * 50) {
+                return tile;
+            }
+        }
+        return null;
+    }
+
+    public void addTile(GameObject tile) {
+        tiles.add(tile);
+        removeOccupied(tile);
+    }
+
+    public void removeOccupied(GameObject t) {
+
+        List<GameObject> occupied = new ArrayList<>();
+        for (GameObject tile : tiles) {
+            if (tile.getX() == t.getX() && tile.getY() == t.getY()) {
+                System.out.println("DOES EXIST");
+                occupied.add(tile);
+                break;
+            }
+        }
+
+        for (GameObject grass : occupied) {
+            tiles.remove(grass);
+        }
+    }
+    public void draw(Graphics g, int cameraOffsetX, int cameraOffsetY) {
+        for (GameObject tile : tiles) {
             tile.draw(g, cameraOffsetX, cameraOffsetY);
         }
     }

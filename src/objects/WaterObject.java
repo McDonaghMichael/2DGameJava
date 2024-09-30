@@ -1,15 +1,14 @@
-package world;
+package objects;
 
-import objects.GameObject;
 import java.awt.*;
 
-public class Tile implements GameObject{
+public class WaterObject implements GameObject{
     private int x, y;
     private int width, height;
-    private String name = "Tile";
+    private String name = "Water";
     private Image image;
 
-    public Tile(int x, int y, Image image) {
+    public WaterObject(int x, int y, Image image) {
         this.x = x;
         this.y = y;
         this.width = 50;
@@ -49,16 +48,15 @@ public class Tile implements GameObject{
         this.height = height;
     }
 
+    public String getName() {
+        return this.name;
+    }
     public Image getImage() {
         return image;
     }
 
     public void setImage(Image image) {
         this.image = image;
-    }
-
-    public String getName() {
-        return this.name;
     }
 
     public void draw(Graphics g, int cameraOffsetX, int cameraOffsetY) {

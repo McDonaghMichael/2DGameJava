@@ -1,4 +1,7 @@
 import game.Player;
+import objects.GameObject;
+import objects.PlayerObject;
+import objects.WaterObject;
 import world.Tile;
 import world.TileMap;
 import world.WorldConstants;
@@ -79,7 +82,15 @@ public class Game extends JPanel {
                         break;
                 }
 
-                System.out.println("X:" + Player.getXPosition() + " Y:" + Player.getYPosition());
+
+                GameObject tileAtPosition = tileMap.getTileAtPosition(Player.getXPosition() / 50, Player.getYPosition() / 50);
+
+                if (tileAtPosition instanceof WaterObject ) {
+                    Player.setImage(Player.waterImage);
+                }else{
+                    Player.setImage(Player.leftImage);
+                }
+
                 repaint();
             }
 
@@ -100,7 +111,7 @@ public class Game extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         tileMap.draw(g, cameraOffsetX, cameraOffsetY);
-        Tile play = new Tile(player.getXPosition(), player.getYPosition(), Player.getImage());
+        PlayerObject play = new PlayerObject(player.getXPosition(), player.getYPosition(), Player.getImage());
         play.draw(g, cameraOffsetX, cameraOffsetY);
     }
 
