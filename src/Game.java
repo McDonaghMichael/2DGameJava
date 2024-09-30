@@ -23,18 +23,22 @@ public class Game extends JPanel {
                 int key = e.getKeyCode();
                 switch (key) {
                     case KeyEvent.VK_UP:
+                    case KeyEvent.VK_W:
                         player.setYPosition(player.getYPosition() + (10 + Player.getSpeed()));
                         cameraOffsetY += (10 + Player.getSpeed());
                         break;
                     case KeyEvent.VK_RIGHT:
+                    case KeyEvent.VK_D:
                         player.setXPosition(player.getXPosition() + (10 + Player.getSpeed()));
                         cameraOffsetX += (10 + Player.getSpeed());
                         break;
                     case KeyEvent.VK_LEFT:
+                    case KeyEvent.VK_A:
                         player.setXPosition(player.getXPosition() - (10 + Player.getSpeed()));
                         cameraOffsetX -= (10 + Player.getSpeed());
                         break;
                     case KeyEvent.VK_DOWN:
+                    case KeyEvent.VK_S:
                         player.setYPosition(player.getYPosition() - (10 + Player.getSpeed()));
                         cameraOffsetY += (10 + Player.getSpeed());
                         break;
