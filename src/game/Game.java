@@ -6,6 +6,7 @@ import objects.GameObject;
 import objects.PlayerObject;
 import objects.WallObject;
 import objects.WaterObject;
+import toolbar.ToolbarUI;
 import world.TileMap;
 import world.WorldConstants;
 
@@ -187,8 +188,12 @@ public class Game extends JPanel {
 
     public void load() {
         JFrame frame = new JFrame("2D game.Game");
+        ToolbarUI toolbarUI = new ToolbarUI();
         Game game = new Game();
         frame.add(game);
+
+        frame.add(toolbarUI, BorderLayout.SOUTH);
+        frame.pack();
         frame.setSize(dimension.width, dimension.height);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
