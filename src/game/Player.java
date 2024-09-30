@@ -12,7 +12,9 @@ public class Player {
     private static int width;
     private static int height;
     private static int speed;
-    public static Image image, leftImage, rightImage, waterImageLeft, waterImageRight;
+    private static int direction;
+    public static boolean isRunning;
+    public static Image image, leftImage, rightImage, waterImageLeft, waterImageRight, leftImageSprint, rightImageSprint;
 
     public Player(int xPosition, int yPosition, int width, int height) {
         Player.xPosition = xPosition;
@@ -20,11 +22,15 @@ public class Player {
         Player.width = width;
         Player.height = height;
         Player.speed = 10;
+        Player.direction = 0;
+        Player.isRunning = false;
         try {
             Player.leftImage = ImageIO.read(new File("src/res/player_left.png"));
             Player.rightImage = ImageIO.read(new File("src/res/player_right.png"));
             Player.waterImageLeft = ImageIO.read(new File("src/res/player_water_left.png"));
             Player.waterImageRight = ImageIO.read(new File("src/res/player_water_right.png"));
+            Player.leftImageSprint = ImageIO.read(new File("src/res/player_left_sprint.png"));
+            Player.rightImageSprint = ImageIO.read(new File("src/res/player_right_sprint.png"));
             Player.image = leftImage;
         }catch (IOException e){
             e.printStackTrace();
@@ -92,5 +98,21 @@ public class Player {
 
     public static void setImage(Image image) {
         Player.image = image;
+    }
+
+    public static int getDirection() {
+        return direction;
+    }
+
+    public static void setDirection(int direction) {
+        Player.direction = direction;
+    }
+
+    public static boolean isIsRunning() {
+        return isRunning;
+    }
+
+    public static void setIsRunning(boolean isRunning) {
+        Player.isRunning = isRunning;
     }
 }

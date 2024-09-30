@@ -1,7 +1,6 @@
 package world;
 
 import objects.*;
-import world.Tile;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

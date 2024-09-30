@@ -3,7 +3,6 @@ import objects.GameObject;
 import objects.PlayerObject;
 import objects.WallObject;
 import objects.WaterObject;
-import world.Tile;
 import world.TileMap;
 import world.WorldConstants;
 
@@ -51,7 +50,23 @@ public class Game extends JPanel {
                 GameObject tileAtPositionNorth = tileMap.getTileAtPosition(playerX, playerY - 60);
                 GameObject tileAtPositionSouth = tileMap.getTileAtPosition(playerX, playerY + 60);
 
+
                 switch (key) {
+                    case KeyEvent.VK_SHIFT:
+                        Player.setSpeed(10);
+                        switch (Player.getDirection()){
+                            case 0:
+                                Player.setImage(Player.leftImageSprint);
+
+                                break;
+                            case 1:
+                                Player.setImage(Player.rightImageSprint);
+                                break;
+                        }
+                        Player.setIsRunning(true);
+
+
+                        break;
                     case KeyEvent.VK_UP:
                     case KeyEvent.VK_W:
                         if (player.getYPosition() > 0) {
@@ -67,35 +82,47 @@ public class Game extends JPanel {
                     case KeyEvent.VK_RIGHT:
                     case KeyEvent.VK_D:
                         if (player.getXPosition() < mapWidth - player.getWidth()) {
-                            if (tileAtPosition instanceof WaterObject) {
-                                Player.setImage(Player.waterImageRight);
-                            } else if (tileAtPositionEast instanceof WallObject) {
+                            if (tileAtPositionEast instanceof WallObject) {
                                 System.out.println("East: " + tileAtPositionEast.getName());
                                 return;
-                            } else {
-                                Player.setImage(Player.rightImage);
                             }
+                            if (tileAtPosition instanceof WaterObject) {
+                                Player.setImage(Player.waterImageRight);
+
+                            } else {
+                                if(!Player.isIsRunning()) {
+                                    Player.setImage(Player.rightImage);
+                                }
+                            }
+                            Player.setDirection(1);
                             player.setXPosition(player.getXPosition() + (10 + Player.getSpeed()));
                             cameraOffsetX = Math.min(cameraOffsetX + (10 + Player.getSpeed()), mapWidth - getWidth());
+                            Player.setDirection(1);
+
                         }
                         break;
 
                     case KeyEvent.VK_LEFT:
                     case KeyEvent.VK_A:
                         if (player.getXPosition() > 0) {
-
-                            if (tileAtPosition instanceof WaterObject) {
-                                Player.setImage(Player.waterImageLeft);
-                            } else if (tileAtPositionWest instanceof WallObject) {
+                            if (tileAtPositionWest instanceof WallObject) {
                                 System.out.println("West: " + tileAtPositionWest.getName());
                                 return;
+                            }
+                            if (tileAtPosition instanceof WaterObject) {
+                                Player.setImage(Player.waterImageLeft);
                             } else {
-                                Player.setImage(Player.leftImage);
+
+                                if(!Player.isIsRunning()) {
+                                    Player.setImage(Player.leftImage);
+                                }
+
+
                             }
 
                             player.setXPosition(player.getXPosition() - (10 + Player.getSpeed()));
                             cameraOffsetX = Math.max(cameraOffsetX - (10 + Player.getSpeed()), 0);
-
+                            Player.setDirection(0);
                         }
                         break;
 
@@ -114,9 +141,7 @@ public class Game extends JPanel {
                         }
                         break;
 
-                    case KeyEvent.VK_SHIFT:
-                        Player.setSpeed(10);
-                        break;
+
                 }
 
                 repaint();
@@ -128,6 +153,15 @@ public class Game extends JPanel {
                 switch (key) {
                     case KeyEvent.VK_SHIFT:
                         Player.setSpeed(0);
+                        switch (Player.getDirection()){
+                            case 0:
+                                Player.setImage(Player.leftImage);
+                                break;
+                            case 1:
+                                Player.setImage(Player.rightImage);
+                                break;
+                        }
+                        Player.setIsRunning(false);
                         break;
                 }
             }
