@@ -1,5 +1,6 @@
 package world;
 
+import objects.GameObject;
 import world.Tile;
 
 import javax.imageio.ImageIO;
@@ -15,8 +16,12 @@ import game.Player;
 
 public class TileMap {
     private List<Tile> tiles;
+
     private Image grassImage;
+    private Image waterImage;
+
     ArrayList<BufferedImage> grassImages;
+    ArrayList<BufferedImage> waterImages;
 
     public TileMap() {
         tiles = new ArrayList<>();
@@ -31,7 +36,9 @@ public class TileMap {
             grassImages.add(ImageIO.read(new File("src/res/grass2.png")));
             grassImages.add(ImageIO.read(new File("src/res/grass3.png")));
 
-             // Load the image once
+            waterImages = new ArrayList<>();
+            waterImages.add(ImageIO.read(new File("src/res/water1.png")));
+
             System.out.println("Grass image loaded successfully!"); // Debugging line
         } catch (IOException e) {
             System.err.println("Error loading grass image");
@@ -40,11 +47,29 @@ public class TileMap {
     }
 
     private void createTiles() {
-        for (int i = 0; i < Player.getHighestXPosition(); i++) { // 10 tiles wide
-            for (int j = 0; j < Player.getHighestYPosition(); j++) { // 10 tiles tall
-                Random rand = new Random();
-                grassImage = grassImages.get(rand.nextInt(3));
-                tiles.add(new Tile(i * 50, j * 50, grassImage)); // Pass the loaded image
+        for (int i = 0; i < Player.getHighestXPosition(); i++) {
+            for (int j = 0; j < Player.getHighestYPosition(); j++) {
+
+                if(i == 1 && j == 1) {
+                    waterImage = waterImages.get(new Random().nextInt(waterImages.size()));
+                    tiles.add(new Tile(i * 50, j * 50, waterImage));
+                }else if(i == 2 && j == 1) {
+                    waterImage = waterImages.get(new Random().nextInt(waterImages.size()));
+                    tiles.add(new Tile(i * 50, j * 50, waterImage));
+                }else if(i == 2 && j == 2) {
+                    waterImage = waterImages.get(new Random().nextInt(waterImages.size()));
+                    tiles.add(new Tile(i * 50, j * 50, waterImage));
+                }else if(i == 3 && j == 1) {
+                    waterImage = waterImages.get(new Random().nextInt(waterImages.size()));
+                    tiles.add(new Tile(i * 50, j * 50, waterImage));
+                }else{
+                    Random rand = new Random();
+                    grassImage = grassImages.get(rand.nextInt(3));
+                    tiles.add(new Tile(i * 50, j * 50, grassImage)); // Pass the loaded image
+                }
+
+
+
             }
         }
     }

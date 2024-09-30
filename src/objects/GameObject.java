@@ -2,7 +2,7 @@ package objects;
 
 import java.awt.*;
 
-public class Object {
+public class GameObject {
 
     private int x;
     private int y;
@@ -10,7 +10,7 @@ public class Object {
     private int height;
     private Image image;
 
-    public Object(int x, int y, int width, int height, Image image) {
+    public GameObject(int x, int y, int width, int height, Image image) {
         this.x = x;
         this.y = y;
         this.width = width;

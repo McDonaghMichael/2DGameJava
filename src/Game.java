@@ -15,7 +15,7 @@ public class Game extends JPanel {
     private int cameraOffsetY = 0;
 
     public Game() {
-        player = new Player(100, 100, 50, 50);
+        player = new Player(400, 400, 50, 50);
         tileMap = new TileMap();
         setFocusable(true);
         addKeyListener(new KeyAdapter() {
@@ -24,8 +24,8 @@ public class Game extends JPanel {
                 switch (key) {
                     case KeyEvent.VK_UP:
                     case KeyEvent.VK_W:
-                        player.setYPosition(player.getYPosition() + (10 + Player.getSpeed()));
-                        cameraOffsetY += (10 + Player.getSpeed());
+                        player.setYPosition(player.getYPosition() - (10 + Player.getSpeed()));
+                        cameraOffsetY = cameraOffsetY - (10 + Player.getSpeed());
                         break;
                     case KeyEvent.VK_RIGHT:
                     case KeyEvent.VK_D:
@@ -39,15 +39,15 @@ public class Game extends JPanel {
                         break;
                     case KeyEvent.VK_DOWN:
                     case KeyEvent.VK_S:
-                        player.setYPosition(player.getYPosition() - (10 + Player.getSpeed()));
-                        cameraOffsetY += (10 + Player.getSpeed());
+                        player.setYPosition(player.getYPosition() + (10 + Player.getSpeed()));
+                        cameraOffsetY = cameraOffsetY + (10 + Player.getSpeed());
                         break;
                     case KeyEvent.VK_SHIFT:
                         Player.setSpeed(10);
                         break;
                 }
 
-                System.out.println("X:" + player.getXPosition() + " Y:" + player.getYPosition());
+                System.out.println("X:" + cameraOffsetX + " Y:" + cameraOffsetY);
                 repaint();
             }
 
@@ -70,7 +70,8 @@ public class Game extends JPanel {
         tileMap.draw(g, cameraOffsetX, cameraOffsetY);
 
         g.setColor(Color.BLUE);
-        g.fillRect(player.getXPosition() - cameraOffsetX, getHeight() - player.getYPosition() - 50 - cameraOffsetY, player.getWidth(), player.getHeight());
+        g.fillRect(player.getXPosition() - cameraOffsetX, getHeight() - (player.getYPosition() - cameraOffsetY) - player.getHeight(), player.getWidth(), player.getHeight());
+
     }
 
     public static void load() {
