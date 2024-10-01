@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class WallObject implements GameObject{
+
+    private int id;
     private int x, y;
     private int width, height;
     private String name = "Wall";
@@ -15,6 +17,7 @@ public class WallObject implements GameObject{
     private ArrayList<BufferedImage> images = new ArrayList<>();
 
     public WallObject(int x, int y) {
+        this.id = ObjectIDList.WALL_OBJECT;
         this.x = x;
         this.y = y;
         this.width = 50;
@@ -25,6 +28,16 @@ public class WallObject implements GameObject{
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public int getID() {
+        return this.id;
+    }
+
+    @Override
+    public void setID(int id) {
+
     }
 
     public int getX() {

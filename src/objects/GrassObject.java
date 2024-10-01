@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class GrassObject implements GameObject{
+
+    private int id;
     private int x, y;
     private int width, height;
     private String name = "Grass";
@@ -15,6 +17,7 @@ public class GrassObject implements GameObject{
     private ArrayList<BufferedImage> images = new ArrayList<>();
 
     public GrassObject(int x, int y) {
+        this.id = ObjectIDList.GRASS_OBJECT;
         this.x = x;
         this.y = y;
         this.width = 50;
@@ -27,6 +30,16 @@ public class GrassObject implements GameObject{
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public int getID() {
+        return this.id;
+    }
+
+    @Override
+    public void setID(int id) {
+
     }
 
     public int getX() {

@@ -7,7 +7,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class DirtObject implements GameObject{
+public class DirtObject implements GameObject {
+
+    private int id;
     private int x, y;
     private int width, height;
     private String name = "Dirt";
@@ -15,6 +17,7 @@ public class DirtObject implements GameObject{
     private ArrayList<BufferedImage> images = new ArrayList<>();
 
     public DirtObject(int x, int y) {
+        this.id = ObjectIDList.DIRT_OBJECT;
         this.x = x;
         this.y = y;
         this.width = 50;
@@ -25,6 +28,16 @@ public class DirtObject implements GameObject{
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public int getID() {
+        return this.id;
+    }
+
+    @Override
+    public void setID(int id) {
+
     }
 
     public int getX() {

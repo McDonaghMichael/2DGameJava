@@ -5,6 +5,7 @@ import inputs.PlayerInput;
 import objects.DirtObject;
 import objects.GameObject;
 import objects.WallObject;
+import objects.WaterObject;
 import world.TileMap;
 
 import java.util.Random;
@@ -17,11 +18,22 @@ public class RightClickKey extends PlayerInput {
 
         if(obj == null){
             System.err.println("Error Tile Position Creating New");
-            //TileMap.addTile(new WallObject(Player.getPositionBasedOnDirection(), Player.getYPosition(),  TileMap.wallImages.get(new Random().nextInt(TileMap.wallImages.size()))));
+            GameObject newTile = Player.getCurrentObject();
+            if(newTile == null){
+                newTile = new WaterObject(Player.getXPosition(), Player.getYPosition());
+            }
+            newTile.setX(Player.getPositionBasedOnDirection());
+            newTile.setY(Player.getYPosition());
+            TileMap.addTile(newTile);
+            Player.setCurrentObject(null);
             return;
         }
 
-       // TileMap.addTile(new WallObject(obj.getX(), obj.getY(),  TileMap.wallImages.get(new Random().nextInt(TileMap.wallImages.size()))));
+        GameObject newTile = Player.getCurrentObject();
+        newTile.setX(obj.getX());
+        newTile.setY(obj.getY());
+        TileMap.addTile(newTile);
+        Player.setCurrentObject(null);
         System.out.println("New Tile Position X: " + obj.getX() + " Y: " + obj.getY());
 
     }
