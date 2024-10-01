@@ -14,7 +14,7 @@ import java.util.Random;
 import game.player.Player;
 
 public class TileMap {
-    private List<GameObject> tiles;
+    private static List<GameObject> tiles;
 
     private Image grassImage;
     private Image waterImage;
@@ -88,7 +88,7 @@ public class TileMap {
 
     }
 
-    public GameObject getTileAtPosition(int x, int y) {
+    public static GameObject getTileAtPosition(int x, int y) {
         for (GameObject tile : tiles) {
             if (tile.getX() == x && tile.getY()  == y) {
                 return tile;
@@ -121,4 +121,8 @@ public class TileMap {
             tile.draw(g, cameraOffsetX, cameraOffsetY);
         }
     }
+
+
+
+
 }

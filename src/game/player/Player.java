@@ -1,5 +1,8 @@
 package game.player;
 
+import objects.GameObject;
+import world.TileMap;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
@@ -134,5 +137,25 @@ public class Player {
 
     public static void setCameraOffsetX(int cameraOffsetX) {
         Player.cameraOffsetX = cameraOffsetX;
+    }
+
+    public static GameObject getTileAtPositionWest(){
+        return TileMap.getTileAtPosition(Player.getYPosition() - 60, Player.getYPosition());
+    }
+
+    public static GameObject getTileAtPositionNorth(){
+        return TileMap.getTileAtPosition(Player.getYPosition(), Player.getYPosition() - 60);
+    }
+
+    public static GameObject getTileAtPositionEast(){
+        return TileMap.getTileAtPosition(Player.getYPosition() + 60, Player.getYPosition());
+    }
+
+    public static GameObject getTileAtPositionSouth(){
+        return TileMap.getTileAtPosition(Player.getYPosition(), Player.getYPosition() + 60);
+    }
+
+    public static GameObject getTileAtPosition(){
+        return TileMap.getTileAtPosition(Player.getYPosition(), Player.getYPosition());
     }
 }

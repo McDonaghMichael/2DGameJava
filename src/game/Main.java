@@ -1,5 +1,4 @@
-import game.GameWindow;
-import game.entites.EntityManager;
+package game;
 
 import java.awt.*;
 
@@ -13,14 +12,10 @@ public class Main {
     public static void main(String[] args) {
 
         dimension = Toolkit.getDefaultToolkit().getScreenSize();
-
-
-        //Game.load(dimension, screenWidth, screenHeight);
-
+        screenWidth = dimension.width;
+        screenHeight = dimension.height;
 
         GameWindow gameWindow = new GameWindow(dimension, dimension.width, dimension.height);
-
-
 
     }
 }

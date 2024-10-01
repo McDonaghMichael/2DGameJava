@@ -1,7 +1,9 @@
 package game;
 
+import events.EventManager;
 import game.entites.EntityManager;
 import game.player.Player;
+import inputs.InputManager;
 import objects.PlayerObject;
 import world.TileMap;
 
@@ -15,6 +17,8 @@ public class GameWindow extends JPanel {
     private static int screenheight;
     private static Player player;
     private static TileMap tileMap;
+    private static EventManager eventManager;
+    private static InputManager inputManager;
 
 
     public GameWindow(Dimension dimension, int screenwidth, int screenheight) {
@@ -37,7 +41,11 @@ public class GameWindow extends JPanel {
         Player.setCameraOffsetY(Player.getYPosition() - this.screenheight / 4);
         Player.setCameraOffsetX(Player.getXPosition() - this.screenwidth / 4);
 
+        inputManager = new InputManager(this);
+        this.addKeyListener(inputManager);
+
         setFocusable(true);
+
     }
 
     @Override
