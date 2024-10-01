@@ -140,22 +140,22 @@ public class Player {
     }
 
     public static GameObject getTileAtPositionWest(){
-        return TileMap.getTileAtPosition(Player.getYPosition() - 60, Player.getYPosition());
+        return TileMap.getTileAtPosition(Player.getXPosition() - 60, Player.getYPosition());
     }
 
     public static GameObject getTileAtPositionNorth(){
-        return TileMap.getTileAtPosition(Player.getYPosition(), Player.getYPosition() - 60);
+        return TileMap.getTileAtPosition(Player.getXPosition(), Player.getYPosition() - 60);
     }
 
     public static GameObject getTileAtPositionEast(){
-        return TileMap.getTileAtPosition(Player.getYPosition() + 60, Player.getYPosition());
+        return TileMap.getTileAtPosition(Player.getXPosition() + 60, Player.getYPosition());
     }
 
     public static GameObject getTileAtPositionSouth(){
-        return TileMap.getTileAtPosition(Player.getYPosition(), Player.getYPosition() + 60);
+        return TileMap.getTileAtPosition(Player.getXPosition(), Player.getYPosition() + 60);
     }
 
     public static GameObject getTileAtPosition(){
-        return TileMap.getTileAtPosition(Player.getYPosition(), Player.getYPosition());
+        return TileMap.getTileAtPosition(Player.getXPosition(), Player.getYPosition());
     }
 }

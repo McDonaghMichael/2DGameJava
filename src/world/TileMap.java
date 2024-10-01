@@ -22,11 +22,11 @@ public class TileMap {
     private Image wallImage;
     private Image cowImage;
 
-    ArrayList<BufferedImage> grassImages;
-    ArrayList<BufferedImage> waterImages;
-    ArrayList<BufferedImage> dirtImages;
-    ArrayList<BufferedImage> wallImages;
-    ArrayList<BufferedImage> cowImages;
+    public static ArrayList<BufferedImage> grassImages;
+    public static ArrayList<BufferedImage> waterImages;
+    public static ArrayList<BufferedImage> dirtImages;
+    public static ArrayList<BufferedImage> wallImages;
+    public static ArrayList<BufferedImage> cowImages;
 
     public TileMap() {
         tiles = new ArrayList<>();
@@ -90,19 +90,20 @@ public class TileMap {
 
     public static GameObject getTileAtPosition(int x, int y) {
         for (GameObject tile : tiles) {
-            if (tile.getX() == x && tile.getY()  == y) {
+            if (tile.getX() == x && tile.getY() == y) {
+                System.out.println("Tile Position X: " + tile.getX() + " Y: " + tile.getY() + " Name: " + tile.getName());
                 return tile;
             }
         }
         return null;
     }
 
-    public void addTile(GameObject tile) {
+    public static void addTile(GameObject tile) {
         tiles.add(tile);
         removeOccupied(tile);
     }
 
-    public void removeOccupied(GameObject t) {
+    public static void removeOccupied(GameObject t) {
 
         List<GameObject> occupied = new ArrayList<>();
         for (GameObject tile : tiles) {
