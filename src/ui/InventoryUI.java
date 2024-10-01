@@ -2,10 +2,7 @@ package ui;
 
 import game.GameWindow;
 import game.player.Player;
-import objects.DirtObject;
-import objects.GrassObject;
-import objects.WallObject;
-import objects.WaterObject;
+import objects.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,41 +12,65 @@ import java.awt.event.ActionListener;
 public class InventoryUI extends JPanel {
 
     public InventoryUI() {
-        setLayout(new GridLayout(3,3));
+        setLayout(new GridLayout(1,6));
 
-        JButton wallBtn = new JButton("Wall");
+        WallObject wallObject = new WallObject(Player.getXPosition(), Player.getYPosition());
+        JButton wallBtn = new JButton(new ImageIcon(wallObject.getImage()));
         wallBtn.setBackground(Color.GRAY);
         wallBtn.setFocusable(false);
         wallBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Player.setCurrentObject(new WallObject(Player.getXPosition(), Player.getYPosition()));
+                Player.setCurrentObject(wallObject);
             }
         });
 
-        JButton dirtBtn = new JButton("Dirt");
+        DirtObject dirtObject = new DirtObject(Player.getXPosition(), Player.getYPosition());
+        JButton dirtBtn = new JButton(new ImageIcon(dirtObject.getImage()));
         dirtBtn.setBackground(Color.GRAY);
         dirtBtn.setFocusable(false);
         dirtBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Player.setCurrentObject(new DirtObject(Player.getXPosition(), Player.getYPosition()));
+                Player.setCurrentObject(dirtObject);
             }
         });
 
-        JButton grassBtn = new JButton("Grass");
+        GrassObject grassObject = new GrassObject(Player.getXPosition(), Player.getYPosition());
+        JButton grassBtn = new JButton(new ImageIcon(grassObject.getImage()));
         grassBtn.setBackground(Color.GRAY);
         grassBtn.setFocusable(false);
         grassBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Player.setCurrentObject(new GrassObject(Player.getXPosition(), Player.getYPosition()));
+                Player.setCurrentObject(grassObject);
             }
         });
 
-        JButton waterBtn = new JButton("Water");
+        WaterObject waterObject = new WaterObject(Player.getXPosition(), Player.getYPosition());
+        JButton waterBtn = new JButton(new ImageIcon(waterObject.getImage()));
         waterBtn.setBackground(Color.GRAY);
         waterBtn.setFocusable(false);
         waterBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Player.setCurrentObject(new WaterObject(Player.getXPosition(), Player.getYPosition()));
+                Player.setCurrentObject(waterObject);
+            }
+        });
+
+        LavaObject lavaObject = new LavaObject(Player.getXPosition(), Player.getYPosition());
+        JButton lavaBtn = new JButton(new ImageIcon(lavaObject.getImage()));
+        lavaBtn.setBackground(Color.GRAY);
+        lavaBtn.setFocusable(false);
+        lavaBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Player.setCurrentObject(lavaObject);
+            }
+        });
+
+        SandObject sandObject = new SandObject(Player.getXPosition(), Player.getYPosition());
+        JButton sandBtn = new JButton(new ImageIcon(sandObject.getImage()));
+        sandBtn.setBackground(Color.GRAY);
+        sandBtn.setFocusable(false);
+        sandBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Player.setCurrentObject(sandObject);
             }
         });
 
@@ -57,5 +78,7 @@ public class InventoryUI extends JPanel {
         add(dirtBtn);
         add(grassBtn);
         add(waterBtn);
+        add(lavaBtn);
+        add(sandBtn);
     }
 }

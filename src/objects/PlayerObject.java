@@ -2,18 +2,31 @@ package objects;
 
 import java.awt.*;
 
-public class PlayerObject implements GameObject{
+public class PlayerObject implements GameObject {
+
+    private int id;
     private int x, y;
     private int width, height;
     private String name = "Player";
     private Image image;
 
     public PlayerObject(int x, int y, Image image) {
+        this.id = ObjectIDList.PLAYER_OBEJCT;
         this.x = x;
         this.y = y;
         this.width = 50;
         this.height = 50;
         this.image = image;
+    }
+
+    @Override
+    public int getID() {
+        return this.id;
+    }
+
+    @Override
+    public void setID(int id) {
+
     }
 
     public int getX() {

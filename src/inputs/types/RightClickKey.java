@@ -30,6 +30,9 @@ public class RightClickKey extends PlayerInput {
         }
 
         GameObject newTile = Player.getCurrentObject();
+        if(newTile == null){
+            newTile = new WaterObject(Player.getXPosition(), Player.getYPosition());
+        }
         newTile.setX(obj.getX());
         newTile.setY(obj.getY());
         TileMap.addTile(newTile);

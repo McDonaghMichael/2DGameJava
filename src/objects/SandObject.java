@@ -7,24 +7,24 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class WallObject implements GameObject{
+public class SandObject implements GameObject {
 
     private int id;
     private int x, y;
     private int width, height;
-    private String name = "Wall";
+    private String name = "Sand";
     private Image image;
     private ArrayList<BufferedImage> images = new ArrayList<>();
 
-    public WallObject(int x, int y) {
-        this.id = ObjectIDList.WALL_OBJECT;
+    public SandObject(int x, int y) {
+        this.id = ObjectIDList.SAND_OBJECT;
         this.x = x;
         this.y = y;
         this.width = 50;
         this.height = 50;
         try{
-            images.add(ImageIO.read(new File("src/res/objects/wall1.png")));
-            this.image = images.get(new Random().nextInt(images.size()));
+            images.add(ImageIO.read(new File("src/res/objects/sand1.png")));
+            this.image = images.get(new Random().nextInt(images.size()));;
         }catch (Exception e){
             e.printStackTrace();
         }

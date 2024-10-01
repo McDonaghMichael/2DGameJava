@@ -6,5 +6,7 @@ public class ObjectIDList {
             GRASS_OBJECT = 2,
             WALL_OBJECT = 3,
             WATER_OBJECT = 3,
-            PLAYER_OBEJCT = 4;
+            PLAYER_OBEJCT = 4,
+            LAVA_OBJECT = 5,
+            SAND_OBJECT = 6;
 }
