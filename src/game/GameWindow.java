@@ -1,6 +1,5 @@
 package game;
 
-import game.entites.EntityManager;
 import game.player.Player;
 import inputs.InputManager;
 import objects.PlayerObject;
@@ -18,24 +17,18 @@ public class GameWindow extends JPanel {
     private static TileMap tileMap;
     private static InputManager inputManager;
 
-
     public GameWindow(Dimension dimension, int screenwidth, int screenheight) {
-
         this.dimension = dimension;
         this.screenwidth = screenwidth;
         this.screenheight = screenheight;
 
         tileMap = new TileMap();
 
-        JFrame frame = new JFrame("2D game.Game");
-        frame.pack();
-        frame.add(this);
-        frame.setSize(dimension.width, dimension.height);
+        JFrame frame = new JFrame();
+        frame.setUndecorated(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
 
         player = new Player(800, 800, 50, 50);
-
         Player.setCameraOffsetY(Player.getYPosition() - this.screenheight / 4);
         Player.setCameraOffsetX(Player.getXPosition() - this.screenwidth / 4);
 
@@ -43,7 +36,10 @@ public class GameWindow extends JPanel {
         this.addKeyListener(inputManager);
 
         setFocusable(true);
+        frame.add(this);
 
+        frame.setSize(dimension.width, dimension.height);
+        frame.setVisible(true);
     }
 
     @Override
@@ -54,7 +50,7 @@ public class GameWindow extends JPanel {
         PlayerObject play = new PlayerObject(player.getXPosition(), player.getYPosition(), Player.getImage());
         play.draw(g, Player.getCameraOffsetX(), Player.getCameraOffsetY());
 
-        EntityManager.drawEntities(g, Player.getCameraOffsetX(), Player.getCameraOffsetY());
+
     }
 
 }
