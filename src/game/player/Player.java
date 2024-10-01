@@ -139,20 +139,42 @@ public class Player {
         Player.cameraOffsetX = cameraOffsetX;
     }
 
+    public static GameObject getTileAtPositionBasedOnDirection(){
+        switch (Player.direction){
+            case 0:
+                return getTileAtPositionWest();
+            case 1:
+                return getTileAtPositionEast();
+        }
+
+        return getTileAtPositionEast();
+    }
+
+    public static int getPositionBasedOnDirection(){
+        switch (Player.direction){
+            case 0:
+                return Player.getXPosition() - 50;
+            case 1:
+                return Player.getXPosition() + 50;
+        }
+
+        return Player.getXPosition() + 50;
+    }
+
     public static GameObject getTileAtPositionWest(){
-        return TileMap.getTileAtPosition(Player.getXPosition() - 60, Player.getYPosition());
+        return TileMap.getTileAtPosition(Player.getXPosition() - 50, Player.getYPosition());
     }
 
     public static GameObject getTileAtPositionNorth(){
-        return TileMap.getTileAtPosition(Player.getXPosition(), Player.getYPosition() - 60);
+        return TileMap.getTileAtPosition(Player.getXPosition(), Player.getYPosition() - 50);
     }
 
     public static GameObject getTileAtPositionEast(){
-        return TileMap.getTileAtPosition(Player.getXPosition() + 60, Player.getYPosition());
+        return TileMap.getTileAtPosition(Player.getXPosition() + 50, Player.getYPosition());
     }
 
     public static GameObject getTileAtPositionSouth(){
-        return TileMap.getTileAtPosition(Player.getXPosition(), Player.getYPosition() + 60);
+        return TileMap.getTileAtPosition(Player.getXPosition(), Player.getYPosition() + 50);
     }
 
     public static GameObject getTileAtPosition(){

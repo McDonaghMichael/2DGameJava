@@ -1,5 +1,6 @@
 package world;
 
+import game.GameWindow;
 import objects.*;
 
 import javax.imageio.ImageIO;
@@ -16,6 +17,8 @@ import game.player.Player;
 public class TileMap {
     private static List<GameObject> tiles;
 
+    private static GameWindow window;
+
     private Image grassImage;
     private Image waterImage;
     private Image dirtImage;
@@ -28,7 +31,8 @@ public class TileMap {
     public static ArrayList<BufferedImage> wallImages;
     public static ArrayList<BufferedImage> cowImages;
 
-    public TileMap() {
+    public TileMap(GameWindow window) {
+        this.window = window;
         tiles = new ArrayList<>();
         loadGrassImage();
 
@@ -99,8 +103,9 @@ public class TileMap {
     }
 
     public static void addTile(GameObject tile) {
-        tiles.add(tile);
         removeOccupied(tile);
+        tiles.add(tile);
+
     }
 
     public static void removeOccupied(GameObject t) {

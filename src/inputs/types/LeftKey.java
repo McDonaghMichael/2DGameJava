@@ -28,7 +28,7 @@ public class LeftKey extends PlayerInput {
             Player.setCameraOffsetX(Math.max(Player.cameraOffsetX - (10 + Player.getSpeed()), 0));
             Player.setDirection(0);
 
-            System.out.println("Player Position X: " + Player.getXPosition() + " Y: " + Player.getYPosition());
+        //    System.out.println("Player Position X: " + Player.getXPosition() + " Y: " + Player.getYPosition());
         }
     }
     @Override

@@ -22,7 +22,7 @@ public class GameWindow extends JPanel {
         this.screenwidth = screenwidth;
         this.screenheight = screenheight;
 
-        tileMap = new TileMap();
+        tileMap = new TileMap(this);
 
         JFrame frame = new JFrame();
         frame.setUndecorated(true);

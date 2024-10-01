@@ -26,7 +26,7 @@ public class RightKey extends PlayerInput {
             Player.setDirection(1);
             Player.setXPosition(Player.getXPosition() + (10 + Player.getSpeed()));
             Player.setCameraOffsetX(Math.min(Player.cameraOffsetX + (10 + Player.getSpeed()), WorldConstants.WORLD_X_BORDER - Player.getWidth()));
-            System.out.println("Player Position X: " + Player.getXPosition() + " Y: " + Player.getYPosition());
+          //  System.out.println("Player Position X: " + Player.getXPosition() + " Y: " + Player.getYPosition());
 
 
         }
