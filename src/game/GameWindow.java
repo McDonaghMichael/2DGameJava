@@ -3,7 +3,8 @@ package game;
 import game.player.Player;
 import inputs.InputManager;
 import objects.PlayerObject;
-import ui.MenuUI;
+import ui.IndicatorsUI;
+import ui.InventoryUI;
 import world.TileMap;
 
 import javax.swing.*;
@@ -17,6 +18,9 @@ public class GameWindow extends JPanel {
     private static Player player;
     private static TileMap tileMap;
     private static InputManager inputManager;
+
+    private static IndicatorsUI indicatorsUI;
+    private static InventoryUI inventoryUI;
 
     public GameWindow(Dimension dimension, int screenwidth, int screenheight) {
         this.dimension = dimension;
@@ -39,9 +43,12 @@ public class GameWindow extends JPanel {
         setFocusable(true);
         frame.add(this);
 
-        MenuUI menuUI = new MenuUI();
-        frame.add(menuUI, BorderLayout.NORTH);
+        indicatorsUI = new IndicatorsUI();
+        frame.add(indicatorsUI, BorderLayout.NORTH);
         frame.pack();
+        inventoryUI = new InventoryUI();
+        frame.add(inventoryUI, BorderLayout.SOUTH);
+
         frame.setSize(dimension.width, dimension.height);
         frame.setVisible(true);
 
@@ -56,6 +63,14 @@ public class GameWindow extends JPanel {
         play.draw(g, Player.getCameraOffsetX(), Player.getCameraOffsetY());
 
 
+    }
+
+    public static IndicatorsUI getIndicatorsUI() {
+        return indicatorsUI;
+    }
+
+    public static InventoryUI getInventoryUI() {
+        return inventoryUI;
     }
 
 }

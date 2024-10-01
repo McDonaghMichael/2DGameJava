@@ -1,4 +1,4 @@
-package toolbar;
+package ui;
 
 
 import javax.swing.*;
