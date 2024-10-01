@@ -2,6 +2,7 @@ package game.player;
 
 import objects.GameObject;
 import world.TileMap;
+import world.WorldConstants;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -32,7 +33,7 @@ public class Player {
         Player.cameraOffsetY = 0;
         Player.width = width;
         Player.height = height;
-        Player.speed = 10;
+        Player.speed = 25;
         Player.direction = 0;
         Player.isRunning = false;
         Player.health = 10;
@@ -196,34 +197,34 @@ public class Player {
 
         switch (Player.direction) {
             case 0: // Moving left
-                newPosition = currentXPosition - 50;
+                newPosition = currentXPosition - WorldConstants.TILE_SIZE;
                 break;
             case 1: // Moving right
-                newPosition = currentXPosition + 50;
+                newPosition = currentXPosition + WorldConstants.TILE_SIZE;
                 break;
             default: // Default case, just return the current position
                 return currentXPosition;
         }
 
         // Round to the nearest multiple of 50
-        return Math.round(newPosition / 50.0f) * 50;
+        return Math.round(newPosition / 100.0f) * WorldConstants.TILE_SIZE;
     }
 
 
     public static GameObject getTileAtPositionWest(){
-        return TileMap.getTileAtPosition(Player.getXPosition() - 50, Player.getYPosition());
+        return TileMap.getTileAtPosition(Player.getXPosition() - WorldConstants.TILE_SIZE, Player.getYPosition());
     }
 
     public static GameObject getTileAtPositionNorth(){
-        return TileMap.getTileAtPosition(Player.getXPosition(), Player.getYPosition() - 50);
+        return TileMap.getTileAtPosition(Player.getXPosition(), Player.getYPosition() - WorldConstants.TILE_SIZE);
     }
 
     public static GameObject getTileAtPositionEast(){
-        return TileMap.getTileAtPosition(Player.getXPosition() + 50, Player.getYPosition());
+        return TileMap.getTileAtPosition(Player.getXPosition() + WorldConstants.TILE_SIZE, Player.getYPosition());
     }
 
     public static GameObject getTileAtPositionSouth(){
-        return TileMap.getTileAtPosition(Player.getXPosition(), Player.getYPosition() + 50);
+        return TileMap.getTileAtPosition(Player.getXPosition(), Player.getYPosition() + WorldConstants.TILE_SIZE);
     }
 
     public static GameObject getTileAtPosition(){

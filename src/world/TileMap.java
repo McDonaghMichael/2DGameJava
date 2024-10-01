@@ -32,7 +32,7 @@ public class TileMap {
         Random rand = new Random();
         for (int i = 0; i < Player.getHighestXPosition(); i++) {
             for (int j = 0; j < Player.getHighestYPosition(); j++) {
-                GrassObject tile = new GrassObject(i * 50, j * 50);
+                GrassObject tile = new GrassObject(i * WorldConstants.TILE_SIZE, j * WorldConstants.TILE_SIZE);
                 tiles.add(tile);
             }
         }
@@ -43,13 +43,13 @@ public class TileMap {
 
     private void generateLake() {
 
-        addTile(new WaterObject(5 * 50, 4 * 50));
-        addTile(new WaterObject(6 * 50, 4 * 50));
-        addTile(new DirtObject(5 * 50, 5 * 50));
-        addTile(new DirtObject(6 * 50, 5 * 50));
-        addTile(new DirtObject(5 * 50, 7 * 50));
-        addTile(new DirtObject(5 * 50, 8 * 50));
-        addTile(new WallObject(10 * 50, 10 * 50));
+        addTile(new WaterObject(5 * WorldConstants.TILE_SIZE, 4 * WorldConstants.TILE_SIZE));
+        addTile(new WaterObject(6 * WorldConstants.TILE_SIZE, 4 * WorldConstants.TILE_SIZE));
+        addTile(new DirtObject(5 * WorldConstants.TILE_SIZE, 5 * WorldConstants.TILE_SIZE));
+        addTile(new DirtObject(6 * WorldConstants.TILE_SIZE, 5 * WorldConstants.TILE_SIZE));
+        addTile(new DirtObject(5 * WorldConstants.TILE_SIZE, 7 * WorldConstants.TILE_SIZE));
+        addTile(new DirtObject(5 * WorldConstants.TILE_SIZE, 8 * WorldConstants.TILE_SIZE));
+        addTile(new WallObject(10 * WorldConstants.TILE_SIZE, 10 * WorldConstants.TILE_SIZE));
 
     }
 

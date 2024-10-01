@@ -1,5 +1,7 @@
 package objects;
 
+import world.WorldConstants;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -20,8 +22,8 @@ public class WallObject implements GameObject{
         this.id = ObjectIDList.WALL_OBJECT;
         this.x = x;
         this.y = y;
-        this.width = 50;
-        this.height = 50;
+        this.width = WorldConstants.TILE_SIZE;
+        this.height = WorldConstants.TILE_SIZE;
         try{
             images.add(ImageIO.read(new File("src/res/objects/wall1.png")));
             this.image = images.get(new Random().nextInt(images.size()));

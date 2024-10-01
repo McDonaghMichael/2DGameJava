@@ -6,6 +6,7 @@ import objects.PlayerObject;
 import ui.IndicatorsUI;
 import ui.InventoryUI;
 import world.TileMap;
+import world.WorldConstants;
 
 import javax.swing.*;
 import java.awt.*;
@@ -33,7 +34,7 @@ public class GameWindow extends JPanel {
         frame.setUndecorated(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        player = new Player(800, 800, 50, 50);
+        player = new Player(800, 800, WorldConstants.TILE_SIZE, WorldConstants.TILE_SIZE);
         Player.setCameraOffsetY(Player.getYPosition() - this.screenheight / 4);
         Player.setCameraOffsetX(Player.getXPosition() - this.screenwidth / 4);
 

@@ -1,5 +1,7 @@
 package objects;
 
+import world.WorldConstants;
+
 import java.awt.*;
 
 public class PlayerObject implements GameObject {
@@ -14,8 +16,8 @@ public class PlayerObject implements GameObject {
         this.id = ObjectIDList.PLAYER_OBEJCT;
         this.x = x;
         this.y = y;
-        this.width = 50;
-        this.height = 50;
+        this.width = WorldConstants.TILE_SIZE;
+        this.height = WorldConstants.TILE_SIZE;
         this.image = image;
     }
 
