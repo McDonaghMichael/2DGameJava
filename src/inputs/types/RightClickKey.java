@@ -17,11 +17,11 @@ public class RightClickKey extends PlayerInput {
 
         if(obj == null){
             System.err.println("Error Tile Position Creating New");
-            TileMap.addTile(new WallObject(Player.getPositionBasedOnDirection(), Player.getYPosition(),  TileMap.wallImages.get(new Random().nextInt(TileMap.wallImages.size()))));
+            //TileMap.addTile(new WallObject(Player.getPositionBasedOnDirection(), Player.getYPosition(),  TileMap.wallImages.get(new Random().nextInt(TileMap.wallImages.size()))));
             return;
         }
 
-        TileMap.addTile(new WallObject(obj.getX(), obj.getY(),  TileMap.wallImages.get(new Random().nextInt(TileMap.wallImages.size()))));
+       // TileMap.addTile(new WallObject(obj.getX(), obj.getY(),  TileMap.wallImages.get(new Random().nextInt(TileMap.wallImages.size()))));
         System.out.println("New Tile Position X: " + obj.getX() + " Y: " + obj.getY());
 
     }

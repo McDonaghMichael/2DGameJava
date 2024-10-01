@@ -1,19 +1,31 @@
 package objects;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Random;
 
-public class WaterObject implements GameObject{
+public class WaterObject implements GameObject {
     private int x, y;
     private int width, height;
     private String name = "Water";
     private Image image;
+    private ArrayList<BufferedImage> images = new ArrayList<>();
 
-    public WaterObject(int x, int y, Image image) {
+    public WaterObject(int x, int y) {
         this.x = x;
         this.y = y;
         this.width = 50;
         this.height = 50;
-        this.image = image;
+        try{
+            images.add(ImageIO.read(new File("src/res/objects/water1.png")));
+            this.image = images.get(new Random().nextInt(images.size()));;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     public int getX() {

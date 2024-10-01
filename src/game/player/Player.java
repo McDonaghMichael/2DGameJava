@@ -22,6 +22,7 @@ public class Player {
     private static int saturation;
     private static int energy;
     public static boolean isRunning;
+    public static GameObject currentObject;
     public static Image image, leftImage, rightImage, waterImageLeft, waterImageRight, leftImageSprint, rightImageSprint;
 
     public Player(int xPosition, int yPosition, int width, int height) {
@@ -37,6 +38,7 @@ public class Player {
         Player.health = 10;
         Player.saturation = 10;
         Player.energy = 10;
+        Player.currentObject = null;
         try {
             Player.leftImage = ImageIO.read(new File("src/res/entities/player/player_left.png"));
             Player.rightImage = ImageIO.read(new File("src/res/entities/player/player_right.png"));
@@ -151,6 +153,14 @@ public class Player {
 
     public static void setEnergy(int energy) {
         Player.energy = energy;
+    }
+
+    public static GameObject getCurrentObject() {
+        return currentObject;
+    }
+
+    public static void setCurrentObject(GameObject currentObject) {
+        Player.currentObject = currentObject;
     }
 
     public static int getCameraOffsetY() {

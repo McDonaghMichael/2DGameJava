@@ -19,56 +19,20 @@ public class TileMap {
 
     private static GameWindow window;
 
-    private Image grassImage;
-    private Image waterImage;
-    private Image dirtImage;
-    private Image wallImage;
-    private Image cowImage;
-
     public static ArrayList<BufferedImage> grassImages;
-    public static ArrayList<BufferedImage> waterImages;
-    public static ArrayList<BufferedImage> dirtImages;
-    public static ArrayList<BufferedImage> wallImages;
-    public static ArrayList<BufferedImage> cowImages;
 
     public TileMap(GameWindow window) {
         this.window = window;
         tiles = new ArrayList<>();
-        loadGrassImage();
-
         createTiles();
 
-    }
-
-    private void loadGrassImage() {
-        try {
-            grassImages = new ArrayList<>();
-            grassImages.add(ImageIO.read(new File("src/res/objects/grass6.png")));
-            grassImages.add(ImageIO.read(new File("src/res/objects/grass7.png")));
-            grassImages.add(ImageIO.read(new File("src/res/objects/grass8.png")));
-
-            waterImages = new ArrayList<>();
-            waterImages.add(ImageIO.read(new File("src/res/objects/water1.png")));
-
-            dirtImages = new ArrayList<>();
-            dirtImages.add(ImageIO.read(new File("src/res/objects/dirt1.png")));
-
-            wallImages = new ArrayList<>();
-            wallImages.add(ImageIO.read(new File("src/res/objects/wall1.png")));
-
-
-        } catch (IOException e) {
-            System.err.println("Error loading grass image");
-            e.printStackTrace();
-        }
     }
 
     private void createTiles() {
         Random rand = new Random();
         for (int i = 0; i < Player.getHighestXPosition(); i++) {
             for (int j = 0; j < Player.getHighestYPosition(); j++) {
-                Image randomGrassImage = grassImages.get(rand.nextInt(grassImages.size()));
-                GrassObject tile = new GrassObject(i * 50, j * 50, randomGrassImage);
+                GrassObject tile = new GrassObject(i * 50, j * 50);
                 tiles.add(tile);
             }
         }
@@ -78,17 +42,14 @@ public class TileMap {
     }
 
     private void generateLake() {
-        waterImage = waterImages.get(new Random().nextInt(waterImages.size()));
-        dirtImage = dirtImages.get(new Random().nextInt(dirtImages.size()));
-        wallImage = wallImages.get(new Random().nextInt(wallImages.size()));
 
-        addTile(new WaterObject(5 * 50, 4 * 50, waterImage));
-        addTile(new WaterObject(6 * 50, 4 * 50, waterImage));
-        addTile(new DirtObject(5 * 50, 5 * 50, dirtImage));
-        addTile(new DirtObject(6 * 50, 5 * 50, dirtImage));
-        addTile(new DirtObject(5 * 50, 7 * 50, dirtImage));
-        addTile(new DirtObject(5 * 50, 8 * 50, dirtImage));
-        addTile(new WallObject(10 * 50, 10 * 50, wallImage));
+        addTile(new WaterObject(5 * 50, 4 * 50));
+        addTile(new WaterObject(6 * 50, 4 * 50));
+        addTile(new DirtObject(5 * 50, 5 * 50));
+        addTile(new DirtObject(6 * 50, 5 * 50));
+        addTile(new DirtObject(5 * 50, 7 * 50));
+        addTile(new DirtObject(5 * 50, 8 * 50));
+        addTile(new WallObject(10 * 50, 10 * 50));
 
     }
 
