@@ -39,23 +39,18 @@ public class TileMap {
     private void loadGrassImage() {
         try {
             grassImages = new ArrayList<>();
-            grassImages.add(ImageIO.read(new File("src/res/grass1.png")));
-            grassImages.add(ImageIO.read(new File("src/res/grass2.png")));
-            grassImages.add(ImageIO.read(new File("src/res/grass3.png")));
-            grassImages.add(ImageIO.read(new File("src/res/grass4.png")));
-            grassImages.add(ImageIO.read(new File("src/res/grass5.png")));
-            grassImages.add(ImageIO.read(new File("src/res/grass6.png")));
-            grassImages.add(ImageIO.read(new File("src/res/grass7.png")));
-            grassImages.add(ImageIO.read(new File("src/res/grass8.png")));
+            grassImages.add(ImageIO.read(new File("src/res/objects/grass6.png")));
+            grassImages.add(ImageIO.read(new File("src/res/objects/grass7.png")));
+            grassImages.add(ImageIO.read(new File("src/res/objects/grass8.png")));
 
             waterImages = new ArrayList<>();
-            waterImages.add(ImageIO.read(new File("src/res/water1.png")));
+            waterImages.add(ImageIO.read(new File("src/res/objects/water1.png")));
 
             dirtImages = new ArrayList<>();
-            dirtImages.add(ImageIO.read(new File("src/res/dirt1.png")));
+            dirtImages.add(ImageIO.read(new File("src/res/objects/dirt1.png")));
 
             wallImages = new ArrayList<>();
-            wallImages.add(ImageIO.read(new File("src/res/wall1.png")));
+            wallImages.add(ImageIO.read(new File("src/res/objects/wall1.png")));
 
 
         } catch (IOException e) {
@@ -65,15 +60,15 @@ public class TileMap {
     }
 
     private void createTiles() {
+        Random rand = new Random();
         for (int i = 0; i < Player.getHighestXPosition(); i++) {
             for (int j = 0; j < Player.getHighestYPosition(); j++) {
-                Random rand = new Random();
-                grassImage = grassImages.get(rand.nextInt(7));
-                GrassObject tile = new GrassObject(i * 50, j * 50, grassImage);
+                Image randomGrassImage = grassImages.get(rand.nextInt(grassImages.size()));
+                GrassObject tile = new GrassObject(i * 50, j * 50, randomGrassImage);
                 tiles.add(tile);
-
             }
         }
+
 
         generateLake();
     }
