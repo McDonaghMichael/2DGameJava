@@ -1,10 +1,7 @@
 package inputs;
 
 import game.GameWindow;
-import inputs.types.DownKey;
-import inputs.types.LeftKey;
-import inputs.types.RightKey;
-import inputs.types.UpKey;
+import inputs.types.*;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -28,6 +25,7 @@ public class InputManager extends KeyAdapter {
         inputMap.put(KeyEvent.VK_RIGHT, new RightKey());
         inputMap.put(KeyEvent.VK_S, new DownKey());
         inputMap.put(KeyEvent.VK_DOWN, new DownKey());
+        inputMap.put(KeyEvent.VK_SHIFT, new ShiftKey());
     }
 
     @Override
@@ -48,6 +46,7 @@ public class InputManager extends KeyAdapter {
         window.repaint();
         if (input != null) {
             input.onKeyReleased();
+            window.repaint();
 
         }
     }

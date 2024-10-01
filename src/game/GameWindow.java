@@ -1,6 +1,5 @@
 package game;
 
-import events.EventManager;
 import game.entites.EntityManager;
 import game.player.Player;
 import inputs.InputManager;
@@ -17,7 +16,6 @@ public class GameWindow extends JPanel {
     private static int screenheight;
     private static Player player;
     private static TileMap tileMap;
-    private static EventManager eventManager;
     private static InputManager inputManager;
 
 
