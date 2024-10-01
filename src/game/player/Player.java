@@ -18,6 +18,9 @@ public class Player {
     private static int height;
     private static int speed;
     private static int direction;
+    private static int health;
+    private static int saturation;
+    private static int energy;
     public static boolean isRunning;
     public static Image image, leftImage, rightImage, waterImageLeft, waterImageRight, leftImageSprint, rightImageSprint;
 
@@ -31,6 +34,9 @@ public class Player {
         Player.speed = 10;
         Player.direction = 0;
         Player.isRunning = false;
+        Player.health = 10;
+        Player.saturation = 10;
+        Player.energy = 10;
         try {
             Player.leftImage = ImageIO.read(new File("src/res/entities/player/player_left.png"));
             Player.rightImage = ImageIO.read(new File("src/res/entities/player/player_right.png"));
@@ -123,6 +129,30 @@ public class Player {
         Player.isRunning = isRunning;
     }
 
+    public static int getHealth() {
+        return health;
+    }
+
+    public static void setHealth(int health) {
+        Player.health = health;
+    }
+
+    public static int getSaturation() {
+        return saturation;
+    }
+
+    public static void setSaturation(int saturation) {
+        Player.saturation = saturation;
+    }
+
+    public static int getEnergy() {
+        return energy;
+    }
+
+    public static void setEnergy(int energy) {
+        Player.energy = energy;
+    }
+
     public static int getCameraOffsetY() {
         return cameraOffsetY;
     }
@@ -150,16 +180,25 @@ public class Player {
         return getTileAtPositionEast();
     }
 
-    public static int getPositionBasedOnDirection(){
-        switch (Player.direction){
-            case 0:
-                return Player.getXPosition() - 50;
-            case 1:
-                return Player.getXPosition() + 50;
+    public static int getPositionBasedOnDirection() {
+        int currentXPosition = Player.getXPosition();
+        int newPosition;
+
+        switch (Player.direction) {
+            case 0: // Moving left
+                newPosition = currentXPosition - 50;
+                break;
+            case 1: // Moving right
+                newPosition = currentXPosition + 50;
+                break;
+            default: // Default case, just return the current position
+                return currentXPosition;
         }
 
-        return Player.getXPosition() + 50;
+        // Round to the nearest multiple of 50
+        return Math.round(newPosition / 50.0f) * 50;
     }
+
 
     public static GameObject getTileAtPositionWest(){
         return TileMap.getTileAtPosition(Player.getXPosition() - 50, Player.getYPosition());

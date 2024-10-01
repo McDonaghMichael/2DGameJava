@@ -12,7 +12,7 @@ import java.util.Random;
 public class RightClickKey extends PlayerInput {
     @Override
     public void onKeyPressed() {
-        int direction = Player.getDirection();
+
         GameObject obj = Player.getTileAtPositionBasedOnDirection();
 
         if(obj == null){

@@ -3,6 +3,7 @@ package game;
 import game.player.Player;
 import inputs.InputManager;
 import objects.PlayerObject;
+import ui.MenuUI;
 import world.TileMap;
 
 import javax.swing.*;
@@ -38,8 +39,12 @@ public class GameWindow extends JPanel {
         setFocusable(true);
         frame.add(this);
 
+        MenuUI menuUI = new MenuUI();
+        frame.add(menuUI, BorderLayout.NORTH);
+        frame.pack();
         frame.setSize(dimension.width, dimension.height);
         frame.setVisible(true);
+
     }
 
     @Override
