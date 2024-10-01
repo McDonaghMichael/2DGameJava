@@ -10,9 +10,8 @@ public class TKey extends PlayerInput {
         if(GameWindow.getIndicatorsUI().isVisible()) {
             GameWindow.getIndicatorsUI().setVisible(false);
         }else{
-            GameWindow.getInventoryUI().setVisible(true);
+            GameWindow.getIndicatorsUI().setVisible(true);
         }
-
     }
 
     @Override

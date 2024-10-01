@@ -28,6 +28,7 @@ public class InputManager extends KeyAdapter {
         inputMap.put(KeyEvent.VK_SHIFT, new ShiftKey());
         inputMap.put(KeyEvent.VK_L, new RightClickKey());
         inputMap.put(KeyEvent.VK_T, new TKey());
+        inputMap.put(KeyEvent.VK_I, new IKey());
     }
 
     @Override

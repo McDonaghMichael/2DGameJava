@@ -47,7 +47,9 @@ public class GameWindow extends JPanel {
         frame.add(indicatorsUI, BorderLayout.NORTH);
         frame.pack();
         inventoryUI = new InventoryUI();
+        inventoryUI.setVisible(false);
         frame.add(inventoryUI, BorderLayout.SOUTH);
+
 
         frame.setSize(dimension.width, dimension.height);
         frame.setVisible(true);
