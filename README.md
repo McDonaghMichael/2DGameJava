@@ -2,6 +2,8 @@
 
 Very basic 2D infinite world sandbox game
 
+![image](https://github.com/user-attachments/assets/3b318b62-23f6-4210-80ae-919eeb93d8bc)
+
 ## Controls
 
 `W` / `Arrow Key up` Move Up
